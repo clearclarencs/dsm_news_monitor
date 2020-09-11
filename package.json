@@ -1,0 +1,28 @@
+{
+  "name": "dsm_news",
+  "version": "1.0.0",
+  "description": "Monitor for dsm whats new page exporting new objects througfh a discord webook.",
+  "main": "dsm_monitor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clearclarencs/dsm_news_monitor.git"
+  },
+  "keywords": [
+    "sneakers",
+    "dsm",
+    "monitor",
+    "raffles"
+  ],
+  "author": "clearclarencs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clearclarencs/dsm_news_monitor/issues"
+  },
+  "homepage": "https://github.com/clearclarencs/dsm_news_monitor#readme",
+  "dependencies": {
+    "requests": "^0.3.0"
+  }
+}
