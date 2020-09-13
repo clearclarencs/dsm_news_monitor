@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/clearclarencs/dsm_news_monitor#readme",
   "dependencies": {
-    "requests": "^0.3.0"
-  }
+    "discord-webhooks": "^1.0.0",
+    "fs": "0.0.1-security",
+    "node-fetch": "^2.6.1",
+    "webhook-discord": "^3.7.5"
+  },
+  "devDependencies": {}
 }
