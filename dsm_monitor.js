@@ -1,3 +1,4 @@
+var webhooks = [require('./webhooks.json')]
 const fetch = require('node-fetch');
 const Webhook = require("webhook-discord")
 
@@ -102,8 +103,8 @@ async function scan(){
 async function monitor (){
     while (true) {
         try{
-            const webhooks = require('./webhooks.json')
             scan();
+            webhooks = require('./webhooks.json')
         }catch{
             const Hook = new Webhook.Webhook(error_webhook)
             Hook.err("DSM Monitor", "Error")
