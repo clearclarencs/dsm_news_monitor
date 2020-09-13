@@ -1,4 +1,4 @@
-<img align="left" src="https://wakatime.com/badge/github/clearclarencs/dsm_news_monitor.svg" height="15">
+<img align="center" src="https://wakatime.com/badge/github/clearclarencs/dsm_news_monitor.svg" height="20">
 # DSM News Monitor
 
 My first ever JS program :)
