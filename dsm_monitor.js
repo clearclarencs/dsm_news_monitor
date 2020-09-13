@@ -4,6 +4,7 @@ const Webhook = require("webhook-discord")
 
 var monitor_url = "https://london.doverstreetmarket.com/new-items";
 var already_sent = [] //array of codes of posts already reported
+var error_webhook = ""
 
 //get json of webhooks
 
@@ -81,19 +82,18 @@ async function scan(){
                         }
                         already_sent.push(code);
                     }else{
-                        console.log("Already sent")
                         continue;
 
                     };
                 }catch(err) { //will throw often as news object split isnt perfect and selects header items
-                    console.log("Not a object")
                     continue;
                 }
                 await sleep (1500);
             };
             return;
         }else{
-            console.log('Couldnt get page')
+            const Hook = new Webhook.Webhook(error_webhook)
+            Hook.err("DSM Monitor", "Error getting wabpage "+status_code.toString())
             return ;
         }
     })();
@@ -102,8 +102,12 @@ async function scan(){
 
 async function monitor (){
     while (true) {
-        scan();
-        console.log("HERE")
+        try{
+            scan();
+        }catch{
+            const Hook = new Webhook.Webhook(error_webhook)
+            Hook.err("DSM Monitor", "Error")
+        }
         await sleep(60000)
     }
 };
