@@ -29,7 +29,7 @@ function sleep(ms) {
 async function scan(){
     try{
         (async () => {
-            const response = await fetch(monitor_url, {"headers":headers});
+            const response = await await fetch(monitor_url, {"headers":headers});
             var body = await response.text();
             var status_code = await response.status_code;
             if (status_code = 200){
@@ -79,7 +79,12 @@ async function scan(){
                                                 .setImage(imgurl)
                                                 .addField("Type", type, true)
                                                 .setFooter("A clearclarencs monitor", "https://cdn.discordapp.com/avatars/428998164058472458/0ad1206a8227fea26775a95b26a68c00.png")
-                                Hook.send(msg);
+                                try {
+                                    Hook.send(msg);
+                                } catch {
+                                    const Hook = new Webhook.Webhook(error_webhook)
+                                    Hook.err("DSM Monitor", "wEBHOOK ERROR")
+                                }
                             }
                             already_sent.push(code);
                         }else{
