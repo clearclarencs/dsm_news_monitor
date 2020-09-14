@@ -1,7 +1,7 @@
 {
   "name": "dsm_news",
   "version": "1.0.0",
-  "description": "Monitor for dsm whats new page exporting new objects througfh a discord webook.",
+  "description": "Monitor for dsm whats new page exporting new objects through a discord webook.",
   "main": "dsm_monitor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +17,7 @@
     "raffles"
   ],
   "author": "clearclarencs",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/clearclarencs/dsm_news_monitor/issues"
   },
