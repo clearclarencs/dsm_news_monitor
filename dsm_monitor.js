@@ -101,8 +101,8 @@ async function scan(){
                         continue;
                     }
                     await sleep (1500);
-                first = false
                 };
+                first = false;
                 return;
             } else {
                 const Hook = new Webhook.Webhook(error_webhook)
