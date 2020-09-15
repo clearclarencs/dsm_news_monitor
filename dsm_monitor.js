@@ -54,14 +54,14 @@ async function scan(){
                                 des = des.split("&copy;")[0].trim() //split object by footer and remove it
                             }
                             des = des.replace(/(\r\n|\n|\r)/gm, ""); //removes any line breaks from description (\n)
-                            if (des.includes("e-shop")){ //find button and use top select news type then remove from description
+                            if (des.includes("draw")){
+                                var type = 'RAFFLE'
+                                des = des.split("    ")[0]
+                            } else if (des.includes("e-shop")){ //find button and use top select news type then remove from description
                                 var type = 'E-SHOP'
                                 des = des.split("    ")[0]
                             }else if (des.includes("e-flash")){
                                 var type = 'E-FLASH'
-                                des = des.split("    ")[0]
-                            }else if (des.includes("draw")){
-                                var type = 'RAFFLE'
                                 des = des.split("    ")[0]
                             }else { //if no button item is usually an instore item however is rarely due to not yet loaded which is unpreventable
                                 var type = 'INSTORE/UNKNOWN'
