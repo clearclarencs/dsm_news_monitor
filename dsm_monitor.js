@@ -76,7 +76,7 @@ async function scan(){
                             for (webhook of webhooklst){
                                 const Hook = new Webhook.Webhook(webhook)
                                 const msg = new Webhook.MessageBuilder()
-                                                .setName("DMS "+type)
+                                                .setName("DSM "+type)
                                                 .setColor("#aabbcc")
                                                 .setTitle(title)
                                                 .setDescription(des)
