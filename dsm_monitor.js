@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const Webhook = require("webhook-discord")
 
 var monitor_url = "https://london.doverstreetmarket.com/new-items";
+var first = true
 var already_sent = [] //array of codes of posts already reported
 var error_webhook = ""
 
@@ -40,9 +41,9 @@ async function scan(){
                         var sep = post.split("<p class=\"spacing__15\">"); // split object into code+title and image+description+buton
                         var title = (sep[0]).replace(/<[^>]*>?/gm, '').split("\">"); // split first into code and title
                         var code = title[0]; //extract code
-                        if (!(already_sent.includes(code))) {
-                            title = title[1].trim(); //extract title
-                            var imgurl = sep[1].split("src=\"")[1].split("\"")[0]
+                        title = title[1].trim(); //extract title
+                        var imgurl = sep[1].split("src=\"")[1].split("\"")[0]
+                        if (!(already_sent.includes(imgurl))) {
                             try{
                                 var url = sep[1].split("href=\"")[1].split("\"")[0] //get url to item from a href from title, image or button
                             }catch{
@@ -59,14 +60,19 @@ async function scan(){
                             }else if (des.includes("e-flash")){
                                 var type = 'E-FLASH'
                                 des = des.split("    ")[0]
-                            }else if (des.includes("enter now")){
+                            }else if (des.includes("draw")){
                                 var type = 'RAFFLE'
                                 des = des.split("    ")[0]
                             }else { //if no button item is usually an instore item however is rarely due to not yet loaded which is unpreventable
                                 var type = 'INSTORE/UNKNOWN'
                             }
-                            webhooklst = webhooks["ALL"]
-                            webhooklst = webhooklst.concat(webhooks[(type)]);
+                            if (first) {
+                                webhooklst = []
+                                webhooklst.push(error_webhook)
+                            } else {
+                                webhooklst = webhooks["ALL"]
+                                webhooklst = webhooklst.concat(webhooks[(type)]);
+                            }
                             for (webhook of webhooklst){
                                 const Hook = new Webhook.Webhook(webhook)
                                 const msg = new Webhook.MessageBuilder()
@@ -86,7 +92,7 @@ async function scan(){
                                     Hook.err("DSM Monitor", "wEBHOOK ERROR")
                                 }
                             }
-                            already_sent.push(code);
+                            already_sent.push(imgurl);
                         }else{
                             continue;
 
@@ -95,6 +101,7 @@ async function scan(){
                         continue;
                     }
                     await sleep (1500);
+                first = false
                 };
                 return;
             } else {
